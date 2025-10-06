@@ -1,0 +1,215 @@
+/* Minimal styling - respecting browser defaults with subtle refinements */
+
+::selection {
+  background: #b3d7ff;
+  color: #000;
+}
+
+body {
+  max-width: 65ch;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: #222;
+}
+
+/* Just add a bit of breathing room */
+header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+header h1 {
+  font-family: ui-monospace, "Cascadia Code", Menlo, Monaco, "Courier New",
+    monospace;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+/* Subtle code styling */
+code {
+  font-family: ui-monospace, "Cascadia Code", Menlo, Monaco, "Courier New",
+    monospace;
+  font-size: 0.95em;
+  font-variant-ligatures: common-ligatures;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 1rem;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  line-height: 1.2;
+  transition: background 0.3s ease;
+}
+
+pre:hover {
+  background: #f9f9f9;
+}
+
+pre code {
+  font-size: 0.875rem;
+}
+
+/* Links stay classic but slightly refined */
+a {
+  color: #0066cc;
+  transition: opacity 0.15s ease;
+}
+
+a:visited {
+  color: #551a8b;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+a:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* Mermaid diagrams - minimal styling for server-rendered SVGs */
+.mermaid-diagram {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Footer */
+body > :last-child {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ccc;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+code {
+  background-color: #f5f5f5;
+  padding: 0.2em 0.2em;
+  font-size: 90%;
+  color: darkblue;
+}
+
+/* Custom minimal blue-dominant Chroma theme */
+/* Palette choices: blues for structure, gentle accents elsewhere. */
+pre code {
+  background: transparent;
+  color: #1f2d3a;
+}
+.chroma {
+  background-color: #f5f5f5;
+  color: #1f2d3a;
+}
+
+/* Comments */
+.chroma .c,
+.chroma .c1,
+.chroma .cm,
+.chroma .cs,
+.chroma .cp {
+  color: #5e6b75;
+  font-style: italic;
+}
+
+/* Keywords & language constructs */
+.chroma .k,
+.chroma .kc,
+.chroma .kd,
+.chroma .kn,
+.chroma .kr,
+.chroma .kt,
+.chroma .kp {
+  color: #0b4f91;
+  font-weight: 600;
+}
+
+/* Functions & methods */
+.chroma .nf,
+.chroma .fm {
+  color: #164d8f;
+}
+
+/* Types & classes */
+.chroma .nc,
+.chroma .nn,
+.chroma .nt {
+  color: #2a61a3;
+}
+
+/* Attributes / names */
+.chroma .na,
+.chroma .nv,
+.chroma .no {
+  color: #0b4f91;
+}
+
+/* Strings */
+.chroma .s,
+.chroma .sa,
+.chroma .sb,
+.chroma .sc,
+.chroma .s1,
+.chroma .s2,
+.chroma .sd,
+.chroma .se,
+.chroma .sh,
+.chroma .si,
+.chroma .sx,
+.chroma .sr,
+.chroma .ss {
+  color: #0f5f3d;
+}
+
+/* Numbers */
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .il,
+.chroma .mo {
+  color: #164d8f;
+}
+
+/* Operators */
+.chroma .o,
+.chroma .ow {
+  color: #0b4f91;
+}
+
+/* Emphasis tokens */
+.chroma .gd {
+  background: #ffecec;
+  color: #8a1f11;
+}
+.chroma .gi {
+  background: #e6ffed;
+  color: #085a2a;
+}
+.chroma .err {
+  color: #a80000;
+  border-bottom: 1px dotted #a80000;
+}
+
+/* Whitespace placeholder (rarely shown) */
+.chroma .w {
+  color: #bfc7cc;
+}
+
+/* Hover subtle shift */
+pre:hover .chroma {
+  background-color: #efefef;
+}
