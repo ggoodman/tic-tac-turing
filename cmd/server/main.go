@@ -45,6 +45,15 @@ func main() {
 	// Register static CSS file (higher priority)
 	mux.HandleFunc("/styles.css", web.StylesHandler)
 
+	// Explicit favicon & manifest assets (served from embedded FS)
+	mux.HandleFunc("/favicon.ico", web.StaticAssetHandler)
+	mux.HandleFunc("/favicon-16x16.png", web.StaticAssetHandler)
+	mux.HandleFunc("/favicon-32x32.png", web.StaticAssetHandler)
+	mux.HandleFunc("/apple-touch-icon.png", web.StaticAssetHandler)
+	mux.HandleFunc("/android-chrome-192x192.png", web.StaticAssetHandler)
+	mux.HandleFunc("/android-chrome-512x512.png", web.StaticAssetHandler)
+	mux.HandleFunc("/site.webmanifest", web.StaticAssetHandler)
+
 	// Register web handler for root and markdown variants
 	mux.HandleFunc("GET /{$}", web.Handler)
 	mux.HandleFunc("GET /home.md", web.Handler)

@@ -80,6 +80,41 @@ func StylesHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(cssContent)
 }
 
+// StaticAssetHandler serves embedded static assets (favicons, manifest, css) by filename.
+// Only allows a fixed allowlist to avoid exposing arbitrary embedded paths if added later.
+func StaticAssetHandler(w http.ResponseWriter, r *http.Request) {
+	// Trim leading slash
+	name := strings.TrimPrefix(r.URL.Path, "/")
+	allowed := map[string]string{
+		"styles.css":                 "text/css; charset=utf-8",
+		"favicon.ico":                "image/x-icon",
+		"favicon-16x16.png":          "image/png",
+		"favicon-32x32.png":          "image/png",
+		"apple-touch-icon.png":       "image/png",
+		"android-chrome-192x192.png": "image/png",
+		"android-chrome-512x512.png": "image/png",
+		"site.webmanifest":           "application/manifest+json",
+	}
+
+	ct, ok := allowed[name]
+	if !ok {
+		http.NotFound(w, r)
+		return
+	}
+
+	data, err := static.Files.ReadFile(name)
+	if err != nil {
+		log.Printf("error reading static asset %s: %v", name, err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", ct)
+	w.Header().Set("Cache-Control", "public, max-age=86400")
+	w.WriteHeader(http.StatusOK)
+	w.Write(data)
+}
+
 // Example of how you might inject content in the future:
 // func injectHighScores(html []byte, scores []Score) []byte {
 //     // Find a marker in your HTML like <!-- HIGH_SCORES_PLACEHOLDER -->
