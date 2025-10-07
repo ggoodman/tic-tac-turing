@@ -259,6 +259,8 @@ func NewTicTacTuringHandler(ctx context.Context, log *slog.Logger, serverUrl str
 	srv := NewTickTackTuringServer()
 
 	auth, err := auth.NewFromDiscovery(ctx, authIssuerUrl, serverUrl,
+		// The extra audience here is to allow local testing with
+		// the public URL configured in the auth server.
 		auth.WithExtraAudience("https://tic-tac-turing.fly.dev/mcp"),
 	)
 	if err != nil {
